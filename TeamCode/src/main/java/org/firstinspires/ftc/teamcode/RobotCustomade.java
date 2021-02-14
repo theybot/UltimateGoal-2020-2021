@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -28,11 +29,9 @@ public class RobotCustomade extends LinearOpMode {
     public DcMotor RightShootingMotor = null;
     public DcMotor IntakeMotor = null;
     public DcMotor WobbleArmMotor = null;
-    public DcMotor Motor = null;
     public com.qualcomm.robotcore.hardware.Servo CartridgeServo = null;
     public com.qualcomm.robotcore.hardware.Servo UpDownServo = null;
     public com.qualcomm.robotcore.hardware.Servo WobbleCloseServo = null;
-    public com.qualcomm.robotcore.hardware.Servo Servo = null;
 
 
     /*IMU Fileds*/
