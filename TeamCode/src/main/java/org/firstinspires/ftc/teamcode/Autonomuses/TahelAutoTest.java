@@ -24,7 +24,7 @@ public class TahelAutoTest extends RobotCustomade {
         telemetry.addData("RF:",RF.getCurrentPosition());
         telemetry.addData("RB:",RB.getCurrentPosition());
         telemetry.update();
-        sleep(5000);
+        sleep(2000);
     }
 
 
