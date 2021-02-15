@@ -37,28 +37,24 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvPipeline;
 
 import java.util.List;
 
 @TeleOp(name = "Concept: TensorFlow Object Detection Webcam", group = "Concept")
 
 public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
+    OpenCvCamera webcam;
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "4";
     private static final String LABEL_SECOND_ELEMENT = "1";
     private static final String VUFORIA_KEY =
             "AShqm3D/////AAABmT32+8BbZEYfoY+L8BbhMAiFCWBAqEs1AghjDq2xOQw/uhnPZ4EVDEHOdbIxubuyTgO1mP2yAPzwlRyTTuBrTFIyVAUHjY0+j32GLbh0oLrKqnfyPtagrvZFS/YuAMhDNX25Uc1zXlD6iXX3pDoKBFuQLQ8zD/NvH5Ib2MTlMQq2srJpav6FRHGf0zU5OnEn1g+n2D5G3Uw7h19CyWFI/rQdUJ6kP2m9yMD8tAZDZiKhE0woZ/MgdGU5FgI6faiYCefYpLqrnW6ytWLenftxcKpccUHur1cWSjRxboVyPbVtgueWC7ytf0FrgyAvRo9uxGRXN6tYrjK1EZIPdssJ5PHxzWUd706EQvXIQwxd4Ndx";
 
-    /**
-     * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
-     * localization engine.
-     */
     private VuforiaLocalizer vuforia;
-
-    /**
-     * {@link #tfod} is the variable we will use to store our instance of the TensorFlow Object
-     * Detection engine.
-     */
     private TFObjectDetector tfod;
 
     @Override
@@ -67,6 +63,8 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
         // first.
         initVuforia();
         initTfod();
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
 
         /**
          * Activate TensorFlow Object Detection before we wait for the start command.
@@ -89,6 +87,7 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
         /** Wait for the game to begin */
         telemetry.addData(">", "Press Play to start op mode");
         telemetry.update();
+        webcam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
         waitForStart();
 
         if (opModeIsActive()) {
@@ -119,9 +118,6 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
         }
     }
 
-    /**
-     * Initialize the Vuforia localization engine.
-     */
     private void initVuforia() {
         /*
          * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
