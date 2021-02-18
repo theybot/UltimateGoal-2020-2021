@@ -49,8 +49,8 @@ public class WebcamExample extends LinearOpMode
             telemetry.addData("Pipeline time ms", webcam.getPipelineTimeMs());
             telemetry.addData("Overhead time ms", webcam.getOverheadTimeMs());
             telemetry.addData("Theoretical max FPS", webcam.getCurrentPipelineMaxFps());
-            telemetry.addData("Analysis", ultimatePipline.getAnalysis());
-            telemetry.addData("Position", ultimatePipline.position);
+//            telemetry.addData("Analysis", ultimatePipline.getAnalysis());
+//            telemetry.addData("Position", ultimatePipline.position);
             telemetry.update();
 
             if(gamepad1.a)
@@ -63,7 +63,7 @@ public class WebcamExample extends LinearOpMode
         }
     }
 
-    class SamplePipeline extends OpenCvPipeline
+    class samplePipline extends OpenCvPipeline
     {
         boolean viewportPaused;
 

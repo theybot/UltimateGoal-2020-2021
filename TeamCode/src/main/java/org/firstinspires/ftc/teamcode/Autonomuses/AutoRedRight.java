@@ -13,29 +13,28 @@ public class AutoRedRight extends RobotCustomade {
         super.runOpMode();
         waitForStart();
         MyDriveTrain.encoderDrive(0.5, -5, -5, -5, -5, 2);
-        MyDriveTrain.encoderDrive(0.5, 25, -25, -25, 25, 1);
-        MyDriveTrain.encoderDrive(0.5, -45, -45, -45, -45, 2);
+        MyDriveTrain.encoderDrive(0.5, 30, -30, -30, 30, 1);
+        MyDriveTrain.encoderDrive(0.5, -60, -60, -60, -60, 2);
         sleep(500);
         LeftShootingMotor.setPower(1);
         RightShootingMotor.setPower(1);
-        MyDriveTrain.RotateP(15,0.4,10,0.04);
+        MyDriveTrain.RotateP(15,0.4,10,0.05);
         sleep(500);
         CartridgeServo.setPosition(1);
         sleep(500);
         CartridgeServo.setPosition(0.5);
-        MyDriveTrain.RotateP(20,0.4,10,0.04);
+        MyDriveTrain.RotateP(17,0.4,10,0.06);
         sleep(500);
         CartridgeServo.setPosition(1);
         sleep(500);
         CartridgeServo.setPosition(0.5);
-        MyDriveTrain.RotateP(25,0.4,10,0.04);
+        MyDriveTrain.RotateP(20,0.4,10,0.06);
         CartridgeServo.setPosition(1);
         sleep(500);
         CartridgeServo.setPosition(0.5);
         LeftShootingMotor.setPower(0);
         RightShootingMotor.setPower(0);
         MyDriveTrain.RotateP(0,0.4,10,0.04);
-        sleep(500);
         sleep(500);
         if (TargetZone == "B") {
             MyDriveTrain.encoderDrive(0.5, -5, -5, -5, -5, 2);
@@ -49,9 +48,15 @@ public class AutoRedRight extends RobotCustomade {
             RightShootingMotor.setPower(0);
             IntakeMotor.setPower(0);
             CartridgeServo.setPosition(0.5);
-            MyDriveTrain.encoderDrive(0.5, -100, -100, -100, -100, 2);
+            MyDriveTrain.encoderDrive(0.5, -150, -150, -150, -150, 2);
+//            MyWobbleMechanism.WobbleDown(0.5);
             sleep(500);
-            MyDriveTrain.encoderDrive(0.5, 15, 15, 15, 15, 2);
+            MyWobbleMechanism.WobbleOpen();
+            sleep(500);
+            MyWobbleMechanism.WobbleClose();
+//            MyWobbleMechanism.WobbleUp(0.5);
+            sleep(500);
+            MyDriveTrain.encoderDrive(0.5, 20, 20, 20, 20, 2);
         }
         else if(TargetZone == "C") {
             MyDriveTrain.encoderDrive(0.5, -5, -5, -5, -5, 2);
@@ -66,21 +71,31 @@ public class AutoRedRight extends RobotCustomade {
             IntakeMotor.setPower(0);
             CartridgeServo.setPosition(0.5);
             sleep(500);
-            MyDriveTrain.encoderDrive(0.5, -145, -145, -145, -145, 2);
+            MyDriveTrain.encoderDrive(0.5, -190, -145, -145, -145, 2);
             MyDriveTrain.RotateP(-45,0.4,10,0.04);
-            MyDriveTrain.encoderDrive(0.5, -10, -10, -10, -10, 2);
-//          puting down the Woble
+            MyDriveTrain.encoderDrive(0.5, -25, -25, -25, -25, 2);
+//            MyWobbleMechanism.WobbleDown(0.5);
+            sleep(500);
+            MyWobbleMechanism.WobbleOpen();
+            sleep(500);
+            MyWobbleMechanism.WobbleClose();
+//            MyWobbleMechanism.WobbleUp(0.5);
             sleep(500);
             MyDriveTrain.encoderDrive(0.5, 10, 10, 10, 10, 2);
             MyDriveTrain.RotateP(0,0.4,10,0.04);
             sleep(500);
-            MyDriveTrain.encoderDrive(0.5, 55, 55, 55, 55, 2);
+            MyDriveTrain.encoderDrive(0.5, 70, 70, 70, 70, 2);
         }
         else {
-            MyDriveTrain.encoderDrive(0.5, -90, -90, -90, -90, 2);
+            MyDriveTrain.encoderDrive(0.5, -120, -120, -120, -120, 2);
             MyDriveTrain.RotateP(-90,0.4,10,0.04);
             MyDriveTrain.encoderDrive(0.5, -10, -10, -10, -10, 2);
-//            puting down the Woble
+//            MyWobbleMechanism.WobbleDown(0.5);
+            sleep(500);
+            MyWobbleMechanism.WobbleOpen();
+            sleep(500);
+            MyWobbleMechanism.WobbleClose();
+//            MyWobbleMechanism.WobbleUp(0.5);
         }
 
 
