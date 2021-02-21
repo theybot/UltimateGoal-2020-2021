@@ -25,6 +25,7 @@ public class WebcamExample extends LinearOpMode
     {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        ultimatePipline = new SkystoneDeterminationPipeline();
         webcam.setPipeline(ultimatePipline);
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
@@ -42,63 +43,63 @@ public class WebcamExample extends LinearOpMode
 
         while (opModeIsActive())
         {
-            telemetry.addData("Frame Count", webcam.getFrameCount());
-            telemetry.addData("FPS", String.format("%.2f", webcam.getFps()));
-            telemetry.addData("Total frame time ms", webcam.getTotalFrameTimeMs());
-            telemetry.addData("Pipeline time ms", webcam.getPipelineTimeMs());
-            telemetry.addData("Overhead time ms", webcam.getOverheadTimeMs());
-            telemetry.addData("Theoretical max FPS", webcam.getCurrentPipelineMaxFps());
-//            telemetry.addData("Analysis", ultimatePipline.getAnalysis());
-//            telemetry.addData("Position", ultimatePipline.position);
+//            telemetry.addData("Frame Count", webcam.getFrameCount());
+//            telemetry.addData("FPS", String.format("%.2f", webcam.getFps()));
+//            telemetry.addData("Total frame time ms", webcam.getTotalFrameTimeMs());
+//            telemetry.addData("Pipeline time ms", webcam.getPipelineTimeMs());
+//            telemetry.addData("Overhead time ms", webcam.getOverheadTimeMs());
+//            telemetry.addData("Theoretical max FPS", webcam.getCurrentPipelineMaxFps());
+            telemetry.addData("Analysis", ultimatePipline.getAnalysis());
+            telemetry.addData("Position", ultimatePipline.position);
             telemetry.update();
 
-            if(gamepad1.a)
-            {
-                webcam.stopStreaming();
-                //webcam.closeCameraDevice();
-            }
+//            if(gamepad1.a)
+//            {
+//                webcam.stopStreaming();
+//                //webcam.closeCameraDevice();
+//            }
 
-            sleep(100);
+            sleep(50);
         }
     }
+//
+//    class samplePipline extends OpenCvPipeline
+//    {
+//        boolean viewportPaused;
+//
+//        @Override
+//        public Mat processFrame(Mat input)
+//        {
+//
+//            Imgproc.rectangle(
+//                    input,
+//                    new Point(
+//                            input.cols()/4,
+//                            input.rows()/4),
+//                    new Point(
+//                            input.cols()*(3f/4f),
+//                            input.rows()*(3f/4f)),
+//                    new Scalar(0, 255, 0), 4);
+//
+//            return input;
+//        }
+//
+//        @Override
+//        public void onViewportTapped()
+//        {
+//            viewportPaused = !viewportPaused;
+//
+//            if(viewportPaused)
+//            {
+//                webcam.pauseViewport();
+//            }
+//            else
+//            {
+//                webcam.resumeViewport();
+//            }
+//       }
 
-    class samplePipline extends OpenCvPipeline
-    {
-        boolean viewportPaused;
-
-        @Override
-        public Mat processFrame(Mat input)
-        {
-
-            Imgproc.rectangle(
-                    input,
-                    new Point(
-                            input.cols()/4,
-                            input.rows()/4),
-                    new Point(
-                            input.cols()*(3f/4f),
-                            input.rows()*(3f/4f)),
-                    new Scalar(0, 255, 0), 4);
-
-            return input;
-        }
-
-        @Override
-        public void onViewportTapped()
-        {
-            viewportPaused = !viewportPaused;
-
-            if(viewportPaused)
-            {
-                webcam.pauseViewport();
-            }
-            else
-            {
-                webcam.resumeViewport();
-            }
-        }
-
-    }
+//    }
     public static class SkystoneDeterminationPipeline extends OpenCvPipeline {
         public enum RingPosition {
             FOUR,
