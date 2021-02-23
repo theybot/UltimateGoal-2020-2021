@@ -4,6 +4,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -15,76 +21,28 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@TeleOp
-public class WebcamExample extends BasicAuto
-{
-    OpenCvCamera webcam;
-    SkystoneDeterminationPipeline ultimatePipline;
+public class BasicAuto extends RobotCustomade {
+
+    public OpenCvCamera webcam;
+    public SkystoneDeterminationPipeline UltimatePipline;
+
     @Override
-    public void runOpMode()
-    {
+    public void runOpMode() {
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        UltimatePipline = new SkystoneDeterminationPipeline();
+        webcam.setPipeline(UltimatePipline);
+        webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
+            @Override
+            public void onOpened() {
+                webcam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_LEFT);
+            }
+        });
 
-        waitForStart();
-
-        while (opModeIsActive())
-        {
-//            telemetry.addData("Frame Count", webcam.getFrameCount());
-//            telemetry.addData("FPS", String.format("%.2f", webcam.getFps()));
-//            telemetry.addData("Total frame time ms", webcam.getTotalFrameTimeMs());
-//            telemetry.addData("Pipeline time ms", webcam.getPipelineTimeMs());
-//            telemetry.addData("Overhead time ms", webcam.getOverheadTimeMs());
-//            telemetry.addData("Theoretical max FPS", webcam.getCurrentPipelineMaxFps());
-            telemetry.addData("Analysis", ultimatePipline.getAnalysis());
-            telemetry.addData("Position", ultimatePipline.position);
-            telemetry.update();
-
-//            if(gamepad1.a)
-//            {
-//                webcam.stopStreaming();
-//                //webcam.closeCameraDevice();
-//            }
-
-            sleep(50);
-        }
+        telemetry.addLine("Waiting for start");
+        telemetry.update();
     }
-//
-//    class samplePipline extends OpenCvPipeline
-//    {
-//        boolean viewportPaused;
-//
-//        @Override
-//        public Mat processFrame(Mat input)
-//        {
-//
-//            Imgproc.rectangle(
-//                    input,
-//                    new Point(
-//                            input.cols()/4,
-//                            input.rows()/4),
-//                    new Point(
-//                            input.cols()*(3f/4f),
-//                            input.rows()*(3f/4f)),
-//                    new Scalar(0, 255, 0), 4);
-//
-//            return input;
-//        }
-//
-//        @Override
-//        public void onViewportTapped()
-//        {
-//            viewportPaused = !viewportPaused;
-//
-//            if(viewportPaused)
-//            {
-//                webcam.pauseViewport();
-//            }
-//            else
-//            {
-//                webcam.resumeViewport();
-//            }
-//       }
 
-//    }
     public static class SkystoneDeterminationPipeline extends OpenCvPipeline {
         public enum RingPosition {
             FOUR,
@@ -97,8 +55,8 @@ public class WebcamExample extends BasicAuto
 
         static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(181, 98);
 
-        static final int REGION_WIDTH = 35;
-        static final int REGION_HEIGHT = 25;
+        static final int REGION_WIDTH = 50;
+        static final int REGION_HEIGHT = 40;
 
         final int FOUR_RING_THRESHOLD = 150;
         final int ONE_RING_THRESHOLD = 135;
@@ -115,7 +73,7 @@ public class WebcamExample extends BasicAuto
         Mat Cb = new Mat();
         int avg1;
 
-        private volatile RingPosition position = RingPosition.FOUR;
+        public volatile SkystoneDeterminationPipeline.RingPosition position = SkystoneDeterminationPipeline.RingPosition.FOUR;
 
         void inputToCb(Mat input) {
             Imgproc.cvtColor(input, YCrCb, Imgproc.COLOR_RGB2YCrCb);
@@ -142,13 +100,13 @@ public class WebcamExample extends BasicAuto
                     BLUE, // The color the rectangle is drawn in
                     2); // Thickness of the rectangle lines
 
-            position = RingPosition.FOUR; // Record our analysis
+            position = SkystoneDeterminationPipeline.RingPosition.FOUR; // Record our analysis
             if (avg1 > FOUR_RING_THRESHOLD) {
-                position = RingPosition.FOUR;
+                position = SkystoneDeterminationPipeline.RingPosition.FOUR;
             } else if (avg1 > ONE_RING_THRESHOLD) {
-                position = RingPosition.ONE;
+                position = SkystoneDeterminationPipeline.RingPosition.ONE;
             } else {
-                position = RingPosition.NONE;
+                position = SkystoneDeterminationPipeline.RingPosition.NONE;
             }
 
             Imgproc.rectangle(
