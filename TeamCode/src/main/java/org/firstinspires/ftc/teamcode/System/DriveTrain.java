@@ -37,8 +37,6 @@ public String Mode = "Oriented";
 public String telemetry[];
 public double Angle = 0;
 private ElapsedTime runtime = new ElapsedTime();
-private HardwareMap hardwareMap;
-private VuforiaLocalizer vuforia;
 
 
 /* Constructor */

@@ -2,15 +2,28 @@ package org.firstinspires.ftc.teamcode.Autonomuses;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.RobotCustomade;
+import org.firstinspires.ftc.teamcode.BasicAuto;
+
+import static org.firstinspires.ftc.teamcode.BasicAuto.SkystoneDeterminationPipeline.RingPosition.FOUR;
+import static org.firstinspires.ftc.teamcode.BasicAuto.SkystoneDeterminationPipeline.RingPosition.NONE;
+import static org.firstinspires.ftc.teamcode.BasicAuto.SkystoneDeterminationPipeline.RingPosition.ONE;
 
 
 @Autonomous(name = "AutoRedLeft", group = "TeamCode")
-public class AutoRedLeft extends RobotCustomade {
-    String TargetZone = "C";
+public class AutoRedLeft extends BasicAuto {
+    SkystoneDeterminationPipeline.RingPosition TargetZone = NONE;
     @Override
     public void runOpMode() throws InterruptedException {
         super.runOpMode();
+        while (!opModeIsActive())
+        {
+            TargetZone = UltimatePipline.position;
+            telemetry.addData("Position", UltimatePipline.position);
+            telemetry.addData("Position", TargetZone);
+            telemetry.update();
+
+            sleep(50);
+        }
         waitForStart();
         MyWobbleMechanism.WobbleClose();
         MyDriveTrain.encoderDrive(0.5, -5, -5, -5, -5, 2);
@@ -37,7 +50,7 @@ public class AutoRedLeft extends RobotCustomade {
         RightShootingMotor.setPower(0);
         MyDriveTrain.RotateP(0,0.4,10,0.04);
         sleep(500);
-        if (TargetZone == "B") {
+        if (TargetZone == ONE) {
             MyDriveTrain.encoderDrive(0.5, -5, -5, -5, -5, 2);
             LeftShootingMotor.setPower(1);
             RightShootingMotor.setPower(1);
@@ -59,7 +72,7 @@ public class AutoRedLeft extends RobotCustomade {
             sleep(500);
             MyDriveTrain.encoderDrive(0.5, 20, 20, 20, 20, 2);
         }
-        else if(TargetZone == "C") {
+        else if(TargetZone == FOUR) {
             MyDriveTrain.encoderDrive(0.5, -5, -5, -5, -5, 2);
             LeftShootingMotor.setPower(1);
             RightShootingMotor.setPower(1);

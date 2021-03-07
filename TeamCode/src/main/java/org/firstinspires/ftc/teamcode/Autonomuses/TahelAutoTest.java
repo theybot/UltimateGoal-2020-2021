@@ -12,13 +12,14 @@ import org.openftc.easyopencv.OpenCvCamera;
 public class TahelAutoTest extends BasicAuto {
 
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException {
         super.runOpMode();
         while (!opModeIsActive())
         {
             telemetry.addData("Analysis", UltimatePipline.getAnalysis());
             telemetry.addData("Position", UltimatePipline.position);
             telemetry.update();
+
 
             sleep(50);
         }

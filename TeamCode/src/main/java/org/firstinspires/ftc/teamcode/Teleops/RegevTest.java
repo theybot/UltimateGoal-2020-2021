@@ -68,7 +68,11 @@ public class RegevTest extends RobotCustomade {
             }else if (gamepad2.a){
                 MyWobbleMechanism.WobbleDown(0.3);
             }
-
+            if(gamepad1.a){
+                MyIntakeSystem.IntakeOn(0.9);
+            }else {
+                MyIntakeSystem.IntakeOff();
+            }
             if(gamepad2.b){
                 MyWobbleMechanism.WobbleOpen();
             }else if (gamepad2.x){

@@ -27,7 +27,8 @@ public class BasicAuto extends RobotCustomade {
     public SkystoneDeterminationPipeline UltimatePipline;
 
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException{
+        super.runOpMode();
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         UltimatePipline = new SkystoneDeterminationPipeline();
@@ -35,7 +36,7 @@ public class BasicAuto extends RobotCustomade {
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
-                webcam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_LEFT);
+                webcam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
             }
         });
 
@@ -55,8 +56,8 @@ public class BasicAuto extends RobotCustomade {
 
         static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(181, 98);
 
-        static final int REGION_WIDTH = 50;
-        static final int REGION_HEIGHT = 40;
+        static final int REGION_WIDTH = 30;
+        static final int REGION_HEIGHT = 32;
 
         final int FOUR_RING_THRESHOLD = 150;
         final int ONE_RING_THRESHOLD = 135;
