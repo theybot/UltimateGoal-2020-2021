@@ -10,8 +10,8 @@ import static org.firstinspires.ftc.teamcode.BasicAuto.SkystoneDeterminationPipe
 import static org.firstinspires.ftc.teamcode.BasicAuto.SkystoneDeterminationPipeline.RingPosition.ONE;
 
 
-@Autonomous(name = "AutoBlueLeft", group = "teamcode")
-public class AutoBlueLeft extends BasicAuto {
+@Autonomous(name = "T_AutoBlueRight", group = "teamcode")
+public class T_AutoBlueRight extends BasicAuto {
     BasicAuto.SkystoneDeterminationPipeline.RingPosition TargetZone = NONE;
     @Override
     public void runOpMode() throws InterruptedException {
@@ -26,7 +26,7 @@ public class AutoBlueLeft extends BasicAuto {
         }
         waitForStart();
         MyDriveTrain.encoderDrive(0.5, -5, -5, -5, -5, 2);
-        MyDriveTrain.encoderDrive(0.5, -30, 30, 30, -30, 1);
+        MyDriveTrain.encoderDrive(0.5, 30, -30, -30, 30, 1);
         MyDriveTrain.encoderDrive(0.5, -60, -60, -60, -60, 2);
         sleep(500);
         LeftShootingMotor.setPower(1);
@@ -169,4 +169,5 @@ public class AutoBlueLeft extends BasicAuto {
 
     }
 }
+
 
