@@ -17,7 +17,7 @@ public class RejAutoTest extends RobotCustomade {
         RF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         waitForStart();
-        MyDriveTrain.encoderDrive(0.6,-30,-30,-30,-30,2);
+        MyDriveTrain.encoderDrive(0.5,-30,-30,-30,-30,2);
         telemetry.addData("LB", LB.getCurrentPosition());
         telemetry.addData("LF", LF.getCurrentPosition());
         telemetry.addData("RB", RB.getCurrentPosition());
