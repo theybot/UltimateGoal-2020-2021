@@ -70,7 +70,7 @@ public class RegevTest extends RobotCustomade {
             }
             if(gamepad1.y){
                 MyIntakeSystem.IntakeOn(0.9);
-            } else if (gamepad1.b) {
+            } else if (gamepad1.a) {
                 MyIntakeSystem.IntakeOn(-0.9);
             }else {
                 MyIntakeSystem.IntakeOff();
