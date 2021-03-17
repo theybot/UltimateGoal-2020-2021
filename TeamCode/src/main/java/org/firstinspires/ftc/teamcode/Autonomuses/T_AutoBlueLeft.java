@@ -37,7 +37,7 @@ public class T_AutoBlueLeft extends BasicAuto {
         RightShootingMotor.setPower(0);
         IntakeMotor.setPower(0);
         CartridgeServo.setPosition(0.5);
-        MyDriveTrain.RotateP(0,0.4,10,0.04);
+        MyDriveTrain.RotateP(0,0.4,10,0.05);
         sleep(500);
         if (TargetZone == ONE) {
             MyDriveTrain.encoderDrive(0.5, -5, -5, -5, -5, 2);
@@ -143,9 +143,9 @@ public class T_AutoBlueLeft extends BasicAuto {
 //            MyWobbleMechanism.WobbleDown(0.1);
             MyDriveTrain.encoderDrive(0.5, 10, 10, 10, 10, 2);
             MyDriveTrain.RotateP(180,0.4,10,0.04);
-            MyDriveTrain.encoderDrive(0.5, 120, 120, 120, 120, 2);
+            MyDriveTrain.encoderDrive(0.5, -120, -120, -120, -120, 2);
             MyDriveTrain.encoderDrive(0.5, 30, -30, -30, 30, 1);
-            MyDriveTrain.encoderDrive(0.5, -60, -60, -60, -60, 2);
+            MyDriveTrain.encoderDrive(0.5, -50, -50, -50, -50, 2);
 //            MyWobbleMechanism.WobbleUp(0.1);
             sleep(500);
             MyWobbleMechanism.WobbleOpen();
@@ -155,7 +155,7 @@ public class T_AutoBlueLeft extends BasicAuto {
 //            MyWobbleMechanism.WobbleDown(0.1);
             MyDriveTrain.RotateP(0,0.4,10,0.04);
             MyDriveTrain.encoderDrive(0.5, 30, -30, -30, 30, 1);
-            MyDriveTrain.encoderDrive(0.5, -180, -180, -180, -180, 2);
+            MyDriveTrain.encoderDrive(0.5, -170, -170, -170, -170, 2);
             MyDriveTrain.RotateP(90,0.4,10,0.04);
             MyDriveTrain.encoderDrive(0.5, -10, -10, -10, -10, 2);
 //            MyWobbleMechanism.WobbleUp(0.1);

@@ -107,7 +107,7 @@ public class T_AutoBlueRight extends BasicAuto {
             MyDriveTrain.RotateP(0,0.4,10,0.04);
             MyDriveTrain.encoderDrive(0.5, 190, 190, 190, 190, 2);
             MyDriveTrain.RotateP(180,0.4,10,0.04);
-            MyDriveTrain.encoderDrive(0.5, 30, -30, -30, 30, 1);
+            MyDriveTrain.encoderDrive(0.5, -30, 30, 30, -30, 1);
             MyDriveTrain.encoderDrive(0.5, -60, -60, -60, -60, 2);
 //            MyWobbleMechanism.WobbleUp(0.1);
             sleep(500);
@@ -117,10 +117,7 @@ public class T_AutoBlueRight extends BasicAuto {
             MyWobbleMechanism.WobbleClose();
 //            MyWobbleMechanism.WobbleDown(0.1);
             MyDriveTrain.RotateP(0,0.4,0,0.04);
-            MyDriveTrain.encoderDrive(0.5, 30, -30, -30, 30, 1);
-            MyDriveTrain.encoderDrive(0.5, -250, -250, -250, -250, 2);
-            MyDriveTrain.RotateP(45,0.4,10,0.04);
-            MyDriveTrain.encoderDrive(0.5, -25, -25, -25, -25, 2);
+            MyDriveTrain.encoderDrive(0.5, -270, -270, -270, -270, 2);
 //            MyWobbleMechanism.WobbleUp(0.1);
             sleep(500);
             MyWobbleMechanism.WobbleOpen();
@@ -128,7 +125,6 @@ public class T_AutoBlueRight extends BasicAuto {
             MyWobbleMechanism.WobbleClose();
 //            MyWobbleMechanism.WobbleDown(0.1);
             sleep(500);
-            MyDriveTrain.encoderDrive(0.5, 25, 25, 25, 25, 2);
             MyDriveTrain.encoderDrive(0.5, 70, 70, 70, 70, 2);
         }
         else {
