@@ -28,7 +28,6 @@ public class RegevTest extends RobotCustomade {
 
             angles = IMU.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.RADIANS);
             double heading = angles.firstAngle;
-
             if(gamepad1.b) {
                 Mode = "arcade";
             } else if(gamepad1.x){
