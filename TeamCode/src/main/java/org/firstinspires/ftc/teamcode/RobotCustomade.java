@@ -32,6 +32,7 @@ public class RobotCustomade extends LinearOpMode {
     public com.qualcomm.robotcore.hardware.Servo CartridgeServo = null;
     public com.qualcomm.robotcore.hardware.Servo UpDownServo = null;
     public com.qualcomm.robotcore.hardware.Servo WobbleCloseServo = null;
+   // public com.qualcomm.robotcore.hardware.Servo ElevatorServo = null;
 
 
     /*IMU Fileds*/
@@ -75,6 +76,7 @@ public class RobotCustomade extends LinearOpMode {
         CartridgeServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "CartridgeServo");
         UpDownServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "UpDownServo");
         WobbleCloseServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "WobbleCloseServo");
+        //ElevatorServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "ElevatorServo");
 
         LF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

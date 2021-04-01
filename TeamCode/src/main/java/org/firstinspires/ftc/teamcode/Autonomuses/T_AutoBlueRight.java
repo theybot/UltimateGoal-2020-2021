@@ -31,6 +31,7 @@ public class T_AutoBlueRight extends BasicAuto {
         sleep(500);
         LeftShootingMotor.setPower(1);
         RightShootingMotor.setPower(1);
+        sleep(1000);
         CartridgeServo.setPosition(1);
         sleep(1000);
         LeftShootingMotor.setPower(0);
@@ -38,13 +39,15 @@ public class T_AutoBlueRight extends BasicAuto {
         IntakeMotor.setPower(0);
         CartridgeServo.setPosition(0.5);
         MyDriveTrain.RotateP(0,0.4,10,0.04);
+        UpDownServo.setPosition(ShootingDown);
         sleep(500);
         if (TargetZone == ONE) {
             MyDriveTrain.encoderDrive(0.5, -5, -5, -5, -5, 2);
             LeftShootingMotor.setPower(1);
             RightShootingMotor.setPower(1);
-            sleep(500);
             IntakeMotor.setPower(0.7);
+            sleep(1000);
+            UpDownServo.setPosition(ShootingUp);
             CartridgeServo.setPosition(1);
             sleep(500);
             LeftShootingMotor.setPower(0);

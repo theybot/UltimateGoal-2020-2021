@@ -9,7 +9,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.RobotCustomade;
 
 @TeleOp(name = "RegevTest" , group = "teleops")
-public class RegevTest extends RobotCustomade {
+public class TeleopPreGeme extends RobotCustomade {
 
     private double leftStickX = 0;
     private double leftStickY = 0;
@@ -50,7 +50,7 @@ public class RegevTest extends RobotCustomade {
             }
 
             if (gamepad2.left_bumper) {
-                CartridgeServo.setPosition(1);
+                CartridgeServo.setPosition(0);
             } else {
                 CartridgeServo.setPosition(0.5);
             }
@@ -62,23 +62,24 @@ public class RegevTest extends RobotCustomade {
                 UpDownServo.setPosition(ShootingDown);
             }
 
+
+//            if(gamepad1.y){
+//                MyWobbleMechanism.WobbleUp(0.3);
+//            }else if (gamepad1.a){
+//                MyWobbleMechanism.WobbleDown(0.3);
+//            }
             if(gamepad2.y){
-                MyWobbleMechanism.WobbleUp(0.3);
-            }else if (gamepad2.a){
-                MyWobbleMechanism.WobbleDown(0.3);
-            }
-            if(gamepad1.y){
                 MyIntakeSystem.IntakeOn(0.9);
-            } else if (gamepad1.a) {
+            } else if (gamepad2.a) {
                 MyIntakeSystem.IntakeOn(-0.9);
             }else {
                 MyIntakeSystem.IntakeOff();
             }
-            if(gamepad2.b){
-                MyWobbleMechanism.WobbleOpen();
-            }else if (gamepad2.x){
-                MyWobbleMechanism.WobbleClose();
-            }
+//            if(gamepad2.b){
+//                MyWobbleMechanism.WobbleOpen();
+//            }else if (gamepad2.x){
+//                MyWobbleMechanism.WobbleClose();
+//            }
 
         }
     }
