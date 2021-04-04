@@ -29,6 +29,7 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -45,7 +46,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 import java.util.List;
 
 @TeleOp(name = "Concept: TensorFlow Object Detection Webcam", group = "Concept")
-
+@Disabled
 public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
     OpenCvCamera webcam;
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";

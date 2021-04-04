@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.System;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class ShootingSystem {
@@ -11,12 +12,17 @@ public class ShootingSystem {
     public DcMotor RightShootingMotor = null;
     public Servo CartridgeServo = null;
     public Servo UpDownServo = null;
+    public DigitalChannel CartridgeTouch = null;
 
-    public ShootingSystem(DcMotor LeftShootingMotor, DcMotor RightShootingMotor, Servo CartridgeServo, Servo UpDownServo) {
+    public double ShootingUp = 0.1;
+    public double ShootingDown = 1;
+
+    public ShootingSystem(DcMotor LeftShootingMotor, DcMotor RightShootingMotor, Servo CartridgeServo, Servo UpDownServo, DigitalChannel CartridgeTouch) {
         this.LeftShootingMotor = LeftShootingMotor;
         this.RightShootingMotor = RightShootingMotor;
         this.CartridgeServo = CartridgeServo;
         this.UpDownServo = UpDownServo;
+        this.CartridgeTouch = CartridgeTouch;
     }
 
     public void ShootingOn(double power) {
@@ -28,9 +34,20 @@ public class ShootingSystem {
         RightShootingMotor.setPower(0);
     }
     public void CartridgeOn() {
-        CartridgeServo.setPosition(1);
+        CartridgeServo.setPosition(0);
     }
     public void CartridgeOff() {
         CartridgeServo.setPosition(0.5);
+    }
+    public void CartridgeUp(){UpDownServo.setPosition(ShootingUp);}
+    public void CartridgeDown(){UpDownServo.setPosition(ShootingDown);}
+    public void CartridgeOn3(){
+        int count = 0;
+        if(count<3) {
+            if(CartridgeTouch.getState()) {
+                count++;
+            }
+            CartridgeOn();
+        }
     }
 }

@@ -4,6 +4,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.Range;
 
@@ -11,6 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.System.DriveTrain;
 import org.firstinspires.ftc.teamcode.System.IntakeSystem;
 import org.firstinspires.ftc.teamcode.System.ShootingSystem;
@@ -29,10 +32,10 @@ public class RobotCustomade extends LinearOpMode {
     public DcMotor RightShootingMotor = null;
     public DcMotor IntakeMotor = null;
     public DcMotor WobbleArmMotor = null;
-    public com.qualcomm.robotcore.hardware.Servo CartridgeServo = null;
-    public com.qualcomm.robotcore.hardware.Servo UpDownServo = null;
-    public com.qualcomm.robotcore.hardware.Servo WobbleCloseServo = null;
-   // public com.qualcomm.robotcore.hardware.Servo ElevatorServo = null;
+    public Servo CartridgeServo = null;
+    public Servo UpDownServo = null;
+    public Servo WobbleCloseServo = null;
+   // public Servo ElevatorServo = null;
 
 
     /*IMU Fileds*/
@@ -40,12 +43,14 @@ public class RobotCustomade extends LinearOpMode {
     protected Orientation angles = null;
     protected org.firstinspires.ftc.robotcore.external.navigation.Velocity Velocity;
     protected org.firstinspires.ftc.robotcore.external.navigation.Acceleration Acceleration;
+    protected ElapsedTime runtime = new ElapsedTime();
 
     //digitalChannels
-
+    public DigitalChannel CartridgeTouch = null;
     /*Analog Sensor*/
 
-
+    public double ShootingUp = 0;
+    public double ShootingDown = 1;
     /*Mechanisms*/
     protected DriveTrain MyDriveTrain = null;
     protected WobbleMechanism MyWobbleMechanism = null;
@@ -55,8 +60,6 @@ public class RobotCustomade extends LinearOpMode {
 
 //    Recognition
 
-    public double ShootingUp = 0;
-    public double ShootingDown = 1;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -76,12 +79,14 @@ public class RobotCustomade extends LinearOpMode {
         CartridgeServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "CartridgeServo");
         UpDownServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "UpDownServo");
         WobbleCloseServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "WobbleCloseServo");
-        //ElevatorServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "ElevatorServo");
+        CartridgeTouch = hardwareMap.get(com.qualcomm.robotcore.hardware.DigitalChannel.class, "CartridgeTouch");
 
         LF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         LB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        WobbleArmMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         RF.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         RB.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
@@ -99,12 +104,16 @@ public class RobotCustomade extends LinearOpMode {
         RB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        WobbleArmMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
         LF.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         LB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         RF.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         RB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        WobbleArmMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 //        Define and Initialize Of IMU
 
@@ -134,7 +143,7 @@ public class RobotCustomade extends LinearOpMode {
         MyDriveTrain = new DriveTrain(LB, LF, RF, RB, IMU);
         MyWobbleMechanism = new WobbleMechanism(WobbleArmMotor, WobbleCloseServo);
         MyIntakeSystem = new IntakeSystem(IntakeMotor);
-        MyShootingSystem = new ShootingSystem(LeftShootingMotor,RightShootingMotor,CartridgeServo,UpDownServo);
+        MyShootingSystem = new ShootingSystem(LeftShootingMotor,RightShootingMotor,CartridgeServo,UpDownServo,CartridgeTouch);
 
         // Define and initialize ALL installed servos.
     }

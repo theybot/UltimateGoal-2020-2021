@@ -24,15 +24,10 @@ public class WobbleMechanism {
 
         // reset the timeout time and start motion.
         WobbleArmMotor.setPower(Math.abs(speed));
-
         while ((WobbleArmMotor.isBusy())) {
 
         }
-
-        // Stop all motion;
         WobbleArmMotor.setPower(0);
-
-        // Turn off RUN_TO_POSITION
         WobbleArmMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
@@ -41,14 +36,14 @@ public class WobbleMechanism {
     }
 
     public void WobbleDown(double speed) {
-        WobbleEncoder(speed, -1300);
+        WobbleEncoder(speed, -550);
     }
 
     public void WobbleOpen() {
-        WobbleCloseServo.setPosition(0.7);
+        WobbleCloseServo.setPosition(0.75);
     }
 
     public void WobbleClose() {
-        WobbleCloseServo.setPosition(0.2);
+        WobbleCloseServo.setPosition(0);
     }
 }

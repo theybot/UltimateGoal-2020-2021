@@ -17,6 +17,7 @@ public class T_AutoRedLeft extends BasicAuto {
     public void runOpMode() throws InterruptedException {
         super.runOpMode();
         while (!opModeIsActive())
+
         {
             TargetZone = UltimatePipline.position;
             telemetry.addData("Position", UltimatePipline.position);
