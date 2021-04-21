@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Teleops;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -39,10 +41,27 @@ public class TeleopPreGame extends RobotCustomade {
             }
 
             if (Mode == "arcade") {
-                MyDriveTrain.arcade(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_trigger - gamepad1.left_trigger);
+                MyDriveTrain.arcade(gamepad1.left_stick_y * 0.7, gamepad1.left_stick_x * 0.7, (gamepad1.right_trigger - gamepad1.left_trigger) * 0.7);
             } else {
-                MyDriveTrain.fieldOriented(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_trigger - gamepad1.left_trigger, heading);
+                MyDriveTrain.fieldOriented(gamepad1.left_stick_y * 0.7, gamepad1.left_stick_x * 0.7, (gamepad1.right_trigger - gamepad1.left_trigger) * 0.7, heading);
             }
+
+            if (gamepad1.y) {
+                BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+                parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
+                parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+                parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample opmode
+                parameters.loggingEnabled = true;
+                parameters.loggingTag = "IMU";
+                parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+                IMU.initialize(parameters);
+                telemetry.addLine("imu is calibrated");
+                telemetry.update();
+            }
+//            if (!isStopRequested() && !IMU.isGyroCalibrated()) {
+//                idle();
+//                telemetry.addLine("imu isnt calibrated");
+//            }
 
 
             if (gamepad2.right_trigger > 0) {
@@ -97,14 +116,11 @@ public class TeleopPreGame extends RobotCustomade {
                 time = runtime.seconds();
                 MyWobbleMechanism.WobbleDown(0.7);
                 MyWobbleMechanism.WobbleClose();
-                telemetry.addData("r",runtime.seconds());
-                telemetry.addData("t",time);
-                telemetry.update();
-                if (runtime.seconds() - time > 2) {
-                    MyWobbleMechanism.WobbleUp(0.7);
-                    telemetry.addLine(":)");
-                    telemetry.update();
-                }
+            }else if (gamepad2.left_trigger > 0){
+                MyWobbleMechanism.WobbleUp(0.7);
+            }
+            if(gamepad2.right_stick_button){
+                MyWobbleMechanism.WobbleOpen();
             }
 
         }

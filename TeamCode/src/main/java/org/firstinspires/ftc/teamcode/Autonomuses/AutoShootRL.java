@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode.Autonomuses;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.RobotCustomade;
 
 import static org.firstinspires.ftc.teamcode.BasicAuto.SkystoneDeterminationPipeline.RingPosition.NONE;
 
 @Autonomous(name = "AutoShootRL", group = "teamcode")
+@Disabled
 public class AutoShootRL extends RobotCustomade {
     @Override
     public void runOpMode() throws InterruptedException {

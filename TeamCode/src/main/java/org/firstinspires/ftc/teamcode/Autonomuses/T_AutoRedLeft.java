@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Autonomuses;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.BasicAuto;
 import org.firstinspires.ftc.teamcode.RobotCustomade;
@@ -11,6 +12,7 @@ import static org.firstinspires.ftc.teamcode.BasicAuto.SkystoneDeterminationPipe
 
 
 @Autonomous(name = "T_AutoRedLeft", group = "teamcode")
+@Disabled
 public class T_AutoRedLeft extends BasicAuto {
     BasicAuto.SkystoneDeterminationPipeline.RingPosition TargetZone = NONE;
     @Override

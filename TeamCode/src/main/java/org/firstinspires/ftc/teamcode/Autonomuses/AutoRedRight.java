@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode.Autonomuses;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.RobotCustomade;
 
 
 @Autonomous(name = "AutoRedRight", group = "teamcode")
+@Disabled
 public class AutoRedRight extends RobotCustomade {
     String TargetZone = "C";
     @Override

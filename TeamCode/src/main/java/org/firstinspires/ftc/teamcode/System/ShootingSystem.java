@@ -14,8 +14,8 @@ public class ShootingSystem {
     public Servo UpDownServo = null;
     public DigitalChannel CartridgeTouch = null;
 
-    public double ShootingUp = 0.1;
-    public double ShootingDown = 1;
+    public double ShootingUp = 0;
+    public double ShootingDown = 0.7;
 
     public ShootingSystem(DcMotor LeftShootingMotor, DcMotor RightShootingMotor, Servo CartridgeServo, Servo UpDownServo, DigitalChannel CartridgeTouch) {
         this.LeftShootingMotor = LeftShootingMotor;

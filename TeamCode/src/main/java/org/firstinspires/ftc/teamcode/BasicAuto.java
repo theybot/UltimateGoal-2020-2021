@@ -40,6 +40,8 @@ public class BasicAuto extends RobotCustomade {
             }
         });
 
+        MyWobbleMechanism.WobbleClose();
+
         telemetry.addLine("Waiting for start");
         telemetry.update();
     }
@@ -54,7 +56,7 @@ public class BasicAuto extends RobotCustomade {
         static final Scalar BLUE = new Scalar(0, 0, 255);
         static final Scalar GREEN = new Scalar(0, 255, 0);
 
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(181, 98);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(175, 95);
 
         static final int REGION_WIDTH = 30;
         static final int REGION_HEIGHT = 32;
