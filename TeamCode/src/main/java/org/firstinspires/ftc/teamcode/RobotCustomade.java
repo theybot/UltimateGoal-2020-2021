@@ -35,6 +35,8 @@ public class RobotCustomade extends LinearOpMode {
     public Servo CartridgeServo = null;
     public Servo UpDownServo = null;
     public Servo WobbleCloseServo = null;
+    public Servo LeftRingDropperServo = null;
+    public Servo RightRingDropperServo = null;
    // public Servo ElevatorServo = null;
 
 
@@ -79,6 +81,8 @@ public class RobotCustomade extends LinearOpMode {
         CartridgeServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "CartridgeServo");
         UpDownServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "UpDownServo");
         WobbleCloseServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "WobbleCloseServo");
+        LeftRingDropperServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "LeftRingDropperServo");
+        RightRingDropperServo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "RightRingDropperServo");
         CartridgeTouch = hardwareMap.get(com.qualcomm.robotcore.hardware.DigitalChannel.class, "CartridgeTouch");
 
         LF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

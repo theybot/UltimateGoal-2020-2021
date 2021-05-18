@@ -62,26 +62,15 @@ public class Teleop extends RobotCustomade {
 //                idle();
 //                telemetry.addLine("imu isnt calibrated");
 //            }
-
+            if (gamepad2.dpad_up){
+                MyIntakeSystem.RingDropperUp();
+            }
+            else if (gamepad2.dpad_down){
+                MyIntakeSystem.RingDropperDowm();
+            }
 
             if (gamepad2.right_trigger > 0) {
                 MyIntakeSystem.IntakeOn(-0.9);
-            }
-
-            if (gamepad2.left_bumper) {
-                if (count < 3) {
-                    if (!CartridgeTouch.getState()) {
-                        count++;
-                        telemetry.addLine("ok");
-                        telemetry.update();
-                    }
-                    MyShootingSystem.CartridgeOn();
-                }
-            } else if (gamepad2.right_bumper) {
-                CartridgeServo.setPosition(1);
-            } else {
-                MyShootingSystem.CartridgeOff();
-                count = 0;
             }
             telemetry.addData("t", CartridgeTouch.getState());
             telemetry.update();
@@ -107,6 +96,7 @@ public class Teleop extends RobotCustomade {
             }
             if(gamepad2.a){
                 runtime.reset();
+                MyIntakeSystem.RingDropperUp();
                 MyShootingSystem.ShootingOn(1);
                 if(runtime.seconds() > 0.5){
                     MyShootingSystem.CartridgeUp();
