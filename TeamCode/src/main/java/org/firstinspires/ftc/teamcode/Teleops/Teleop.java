@@ -10,7 +10,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.RobotCustomade;
 
-@TeleOp(name = "TeleopPreGame" , group = "teleops")
+@TeleOp(name = "Teleop" , group = "teleops")
 public class Teleop extends RobotCustomade {
 
     private double leftStickX = 0;
@@ -66,7 +66,7 @@ public class Teleop extends RobotCustomade {
                 MyIntakeSystem.RingDropperUp();
             }
             else if (gamepad2.dpad_down){
-                MyIntakeSystem.RingDropperDowm();
+                MyIntakeSystem.RingDropperDown();
             }
 
             if (gamepad2.right_trigger > 0) {
@@ -102,15 +102,10 @@ public class Teleop extends RobotCustomade {
                     MyShootingSystem.CartridgeUp();
                     runtime.reset();
                 }
-                if(runtime.seconds() > 1){
-                    if (count < 3) {
-                        if (!CartridgeTouch.getState()) {
-                            count++;
-                            telemetry.addLine("ok");
-                            telemetry.update();
-                        }
-                        MyShootingSystem.CartridgeOn();
-                    }
+                if(runtime.seconds() > 1 && IntakeMotor.getCurrentPosition() < - 11000){
+                    telemetry.addLine("ok");
+                    telemetry.update();
+                    MyShootingSystem.CartridgeOn();
                 }
                 MyShootingSystem.ShootingOff();
                 MyShootingSystem.CartridgeDown();

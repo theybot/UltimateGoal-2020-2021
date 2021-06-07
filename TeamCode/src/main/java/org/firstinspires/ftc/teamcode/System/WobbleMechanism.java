@@ -36,11 +36,14 @@ public class WobbleMechanism {
     }
 
     public void WobbleDown(double speed) {
-        WobbleEncoder(speed, -700);
+        WobbleEncoder(speed, -65);
+    }
+    public void WobbleMidle(double speed) {
+        WobbleEncoder(speed, -10);
     }
 
     public void WobbleOpen() {
-        WobbleCloseServo.setPosition(0.75);
+        WobbleCloseServo.setPosition(0.5);
     }
 
     public void WobbleClose() {

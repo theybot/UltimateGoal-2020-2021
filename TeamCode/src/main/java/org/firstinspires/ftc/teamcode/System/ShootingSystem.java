@@ -14,8 +14,8 @@ public class ShootingSystem {
     public Servo UpDownServo = null;
     public DigitalChannel CartridgeTouch = null;
 
-    public double ShootingUp = 0;
-    public double ShootingDown = 0.7;
+    public double ShootingUp = 1;
+    public double ShootingDown = 0;
 
     public ShootingSystem(DcMotor LeftShootingMotor, DcMotor RightShootingMotor, Servo CartridgeServo, Servo UpDownServo, DigitalChannel CartridgeTouch) {
         this.LeftShootingMotor = LeftShootingMotor;
@@ -41,13 +41,5 @@ public class ShootingSystem {
     }
     public void CartridgeUp(){UpDownServo.setPosition(ShootingUp);}
     public void CartridgeDown(){UpDownServo.setPosition(ShootingDown);}
-    public void CartridgeOn3(){
-        int count = 0;
-        if(count<3) {
-            if(CartridgeTouch.getState()) {
-                count++;
-            }
-            CartridgeOn();
-        }
-    }
+
 }

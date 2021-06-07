@@ -11,11 +11,9 @@ public class IntakeSystem {
     public Servo LeftRingDropperServo = null;
     public Servo RightRingDropperServo = null;
 
-    public double DropperUp = 0;
-    public double DropperDowm = 1;
 
-    /* Constructor */
-    public IntakeSystem(DcMotor IntakeMotor) {
+    /* Constructor*/
+    public IntakeSystem(DcMotor IntakeMotor, Servo LeftRingDropperServo, Servo RightRingDropperServo) {
         this.IntakeMotor = IntakeMotor;
         this.LeftRingDropperServo = LeftRingDropperServo;
         this.RightRingDropperServo = RightRingDropperServo;
@@ -27,13 +25,17 @@ public class IntakeSystem {
     public void IntakeOff() {
         IntakeMotor.setPower(0);
     }
-    public void RingDropperDowm() {
-        LeftRingDropperServo.setPosition(DropperDowm);
-        RightRingDropperServo.setPosition(DropperUp);
-    }
     public void RingDropperUp() {
-        LeftRingDropperServo.setPosition(DropperUp);
-        RightRingDropperServo.setPosition(DropperDowm);
+        LeftRingDropperServo.setPosition(0.6);
+        RightRingDropperServo.setPosition(0.8);
+    }
+    public void RingDropperDown() {
+        LeftRingDropperServo.setPosition(0.95);
+        RightRingDropperServo.setPosition(0.35);
+    }
+    public void RingDropperStart() {
+        LeftRingDropperServo.setPosition(0.4);
+        RightRingDropperServo.setPosition(1);
     }
 
 

@@ -31,32 +31,27 @@ public class T_AutoRedRight extends BasicAuto {
 
             sleep(50);
         }
+        TargetZone = NONE;
         waitForStart();
         MyWobbleMechanism.WobbleClose();
         sleep(100);
-        MyWobbleMechanism.WobbleDown(0.7);
-        MyDriveTrain.encoderDrive(0.5, -155,-155, -155, -155, 2);
+        MyDriveTrain.encoderDrive(0.5, -150,-150, -150, -150, 2);
         MyDriveTrain.RotateP(0, 0.8, 10, 0.15);
         MyDriveTrain.encoderDrive(0.7, 40, -40, -40, 40, 1);
         sleep(500);
         MyDriveTrain.RotateP(0, 0.8, 10, 0.15);
-        sleep(2000);
+        MyWobbleMechanism.WobbleMidle(0.6);
         MyShootingSystem.ShootingOn(1);
         MyShootingSystem.CartridgeUp();
-        sleep(2500);
-        count = 0;
-       while (count < 3){
+        sleep(3000);
+        while (IntakeMotor.getCurrentPosition() > - 11000) {
             MyShootingSystem.CartridgeOn();
-            if (CartridgeTouch.getState()) {
-                count++; }
-            }
-            sleep(1700);
+        }
             MyShootingSystem.CartridgeOff();
             MyShootingSystem.ShootingOff();
             MyShootingSystem.CartridgeDown();
             sleep(500);
             if (TargetZone == ONE) {
-                MyWobbleMechanism.WobbleUp(0.7);
 //                MyDriveTrain.RotateP(180, 0.4, 10, 0.04);
 //                MyDriveTrain.encoderDrive(0.5, -20, -20, -20, -20, 2);
 //                MyIntakeSystem.IntakeOn(1);
@@ -119,16 +114,16 @@ public class T_AutoRedRight extends BasicAuto {
                 MyDriveTrain.RotateP(0,0.4,10,0.04);
                 MyDriveTrain.encoderDrive(0.5, 50, 50, 50, 50, 2);
             } else {
-                MyDriveTrain.encoderDrive(0.5, -45, -45, -45, -45, 2);
-                MyDriveTrain.RotateP(-90, 0.4, 10, 0.07);
-                MyDriveTrain.encoderDrive(0.5, -40, -40, -40, -40, 2);
+                MyDriveTrain.encoderDrive(0.5, -50, -50, -50, -50, 2);
+                MyDriveTrain.RotateP(90, 0.4, 10, 0.07);
+                MyDriveTrain.encoderDrive(0.5, 40, 40, 40, 40, 2);
                 MyWobbleMechanism.WobbleDown(0.7);
                 sleep(500);
                 MyWobbleMechanism.WobbleOpen();
                 sleep(500);
                 MyWobbleMechanism.WobbleClose();
-                MyWobbleMechanism.WobbleUp(0.7);
-                MyDriveTrain.encoderDrive(0.5, 30, 30, 30, 30, 2);
+                MyWobbleMechanism.WobbleUp(0.5);
+                MyDriveTrain.encoderDrive(0.5, -30, -30, -30, -30, 2);
             }
 
 

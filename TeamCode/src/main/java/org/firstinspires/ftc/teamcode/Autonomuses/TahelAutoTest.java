@@ -9,7 +9,6 @@ import org.firstinspires.ftc.teamcode.RobotCustomade;
 import org.openftc.easyopencv.OpenCvCamera;
 
 @Autonomous(name = "TahelAutoTest", group = "teamcode")
-@Disabled
 public class TahelAutoTest extends BasicAuto {
 
     @Override
@@ -25,12 +24,10 @@ public class TahelAutoTest extends BasicAuto {
 //            sleep(50);
 //        }
         waitForStart();
-        count = 0;
-        while (count < 2) {
+        while (IntakeMotor.getCurrentPosition() > - 11000) {
             MyShootingSystem.CartridgeOn();
-            if (CartridgeTouch.getState()) {
-                count++;
-            }
         }
+        MyShootingSystem.CartridgeOff();
+
     }
 }

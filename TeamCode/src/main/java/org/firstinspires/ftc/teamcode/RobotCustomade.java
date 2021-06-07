@@ -118,6 +118,7 @@ public class RobotCustomade extends LinearOpMode {
         RB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         WobbleArmMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        IntakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 //        Define and Initialize Of IMU
 
@@ -146,10 +147,12 @@ public class RobotCustomade extends LinearOpMode {
         //Define Mechanisms:
         MyDriveTrain = new DriveTrain(LB, LF, RF, RB, IMU);
         MyWobbleMechanism = new WobbleMechanism(WobbleArmMotor, WobbleCloseServo);
-        MyIntakeSystem = new IntakeSystem(IntakeMotor);
+        MyIntakeSystem = new IntakeSystem(IntakeMotor, LeftRingDropperServo, RightRingDropperServo);
         MyShootingSystem = new ShootingSystem(LeftShootingMotor,RightShootingMotor,CartridgeServo,UpDownServo,CartridgeTouch);
 
         // Define and initialize ALL installed servos.
+        MyIntakeSystem.RingDropperStart();
+//        IntakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
     public double IMUError(double TargetAngle, double turnSpeed){
         return turnSpeed* Range.clip((Math.toRadians(MyDriveTrain.getAngle()) - (Math.toRadians(TargetAngle)))/ Math.toRadians(30), -1, 1);
