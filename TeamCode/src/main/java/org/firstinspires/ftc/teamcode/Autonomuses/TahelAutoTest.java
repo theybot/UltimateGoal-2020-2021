@@ -15,19 +15,15 @@ public class TahelAutoTest extends BasicAuto {
     public void runOpMode() throws InterruptedException {
         super.runOpMode();
         int count = 0;
-//        while (!opModeIsActive()) {
-//            telemetry.addData("Analysis", UltimatePipline.getAnalysis());
-//            telemetry.addData("Position", UltimatePipline.position);
-//            telemetry.update();
-//
-//
-//            sleep(50);
-//        }
-        waitForStart();
-        while (IntakeMotor.getCurrentPosition() > - 11000) {
-            MyShootingSystem.CartridgeOn();
+        sideX = 0;
+        while (!opModeIsActive()) {
+            telemetry.addData("Analysis", UltimatePipline.getAnalysis());
+            telemetry.addData("Position", UltimatePipline.position);
+            telemetry.update();
+
+
+            sleep(50);
         }
-        MyShootingSystem.CartridgeOff();
 
     }
 }

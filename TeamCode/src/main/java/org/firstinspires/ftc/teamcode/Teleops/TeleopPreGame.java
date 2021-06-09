@@ -94,17 +94,17 @@ public class TeleopPreGame extends RobotCustomade {
             } else if (gamepad2.dpad_down) {
                 MyShootingSystem.CartridgeDown();
             }
-            if (gamepad2.dpad_left){
+            if (gamepad1.y){
                 MyIntakeSystem.RingDropperUp();
             }
-            else if (gamepad2.dpad_right){
+            else if (gamepad1.a){
                 MyIntakeSystem.RingDropperDown();
             }
 
 
-            if (gamepad1.y) {
+            if (gamepad1.x) {
                 MyWobbleMechanism.WobbleClose();
-            } else if (gamepad1.a) {
+            } else if (gamepad1.b) {
                 MyWobbleMechanism.WobbleOpen();
             }
             if (gamepad2.y) {
@@ -115,13 +115,13 @@ public class TeleopPreGame extends RobotCustomade {
                 MyIntakeSystem.IntakeOff();
             }
             if (gamepad2.b) {
-                MyWobbleMechanism.WobbleDown(0.7);
+                MyWobbleMechanism.WobbleDown(1);
                 MyWobbleMechanism.WobbleOpen();
             } else if (gamepad2.x) {
                 time = runtime.seconds();
                 MyWobbleMechanism.WobbleClose();
             }else if (gamepad2.left_trigger > 0){
-                MyWobbleMechanism.WobbleUp(0.5);
+                MyWobbleMechanism.WobbleUp(1);
             }
             if(gamepad2.right_stick_button){
                 MyWobbleMechanism.WobbleOpen();

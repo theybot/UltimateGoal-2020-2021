@@ -36,7 +36,7 @@ public class WobbleMechanism {
     }
 
     public void WobbleDown(double speed) {
-        WobbleEncoder(speed, -65);
+        WobbleEncoder(speed, 400);
     }
     public void WobbleMidle(double speed) {
         WobbleEncoder(speed, -10);

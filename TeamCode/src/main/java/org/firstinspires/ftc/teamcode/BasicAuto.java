@@ -25,6 +25,7 @@ public class BasicAuto extends RobotCustomade {
 
     public OpenCvCamera webcam;
     public SkystoneDeterminationPipeline UltimatePipline;
+    public static int sideX;
 
     @Override
     public void runOpMode() throws InterruptedException{
@@ -56,7 +57,8 @@ public class BasicAuto extends RobotCustomade {
         static final Scalar BLUE = new Scalar(0, 0, 255);
         static final Scalar GREEN = new Scalar(0, 255, 0);
 
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(175, 95);
+
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(sideX, 150);
 
         static final int REGION_WIDTH = 30;
         static final int REGION_HEIGHT = 32;
